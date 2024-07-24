@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/database.js';
+import sequelize from '../database/database.js';
 
-sequelize.define('Operations',{
+const Operation = sequelize.define('Operations',{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -33,3 +33,4 @@ sequelize.define('Operations',{
     }
 });
 
+export default Operation;

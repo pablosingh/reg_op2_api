@@ -1,7 +1,10 @@
 import app from './app.js';
 import sequelize from './database/database.js';
 
-async function main(){
+// import Holding from './models/Holding.js';
+// import Operation from './models/Operation.js';
+
+async function connectionTest(){
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -12,4 +15,7 @@ async function main(){
     };
 };
 
-main();
+connectionTest();
+sequelize.sync({
+    force: false
+});

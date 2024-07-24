@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../database/database.js';
+import sequelize from '../database/database.js';
 
-sequelize.define('Holdings',{
+const Holding = sequelize.define('Holdings',{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -27,3 +27,4 @@ sequelize.define('Holdings',{
     }
 });
 
+export default Holding;
