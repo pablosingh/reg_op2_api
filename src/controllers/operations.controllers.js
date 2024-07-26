@@ -7,7 +7,7 @@ export const createOperation = async (req, res) => {
         const newOperation = await Operation.create({ 
             // date,
             date: new Date(),
-            ticker, 
+            ticker: ticker.toUpperCase(), 
             amount, 
             price, 
             total, 
@@ -19,7 +19,7 @@ export const createOperation = async (req, res) => {
         res.json(newOperation);
     } catch (error) {
         res.json({message: error});
-    }
+    };
 };
 
 export const getOperation = async (req, res) => {
@@ -28,5 +28,5 @@ export const getOperation = async (req, res) => {
         res.json(arrayOp);   
     } catch (error) {
         res.json({message: error});
-    }
+    };
 };
