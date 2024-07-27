@@ -30,3 +30,47 @@ export const getOperation = async (req, res) => {
         res.json({message: error});
     };
 };
+
+// function stringToBoolean(str) {
+//     if (str === "true") return true;
+//     if (str === "false") return false;
+//     return Boolean(str);  // Devuelve false para cadenas vacías y true para cualquier otra cosa
+// }
+
+export const updateOperation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { 
+            ticker, price, amount,
+            total, buy, comment,
+            exchange
+         } = req.body;
+        //  console.log(req.body);
+        //  buy = stringToBoolean(buy);
+        const foundOperation = await Operation.findOne({
+            where: {
+                id: id
+            }
+        });
+        ticker ? foundOperation.ticker = ticker : null;
+        price ? foundOperation.price = Number(price) : null;
+        amount ? foundOperation.amount = Number(amount) : null;
+        total ? foundOperation.total = Number(total) : null;
+        buy ? foundOperation.buy = buy : null;
+        comment ? foundOperation.comment = comment : null;
+        exchange ? foundOperation.exchange = exchange : null;
+        await foundOperation.save();
+        res.json(foundOperation);
+    } catch (error) {
+        res.status(500).json({message: error});
+    }
+};
+
+export const deleteOperation = async (req, res) => {
+    try {
+        const { id } = req.params; 
+        res.json({ message: id });
+    } catch (error) {
+        res.status(500).json({message: error});
+    }
+};

@@ -1,3 +1,5 @@
+const apiKeyCoinM = '6b555911-d0f2-417f-9bd1-95cf5ea375aa';
+
 import fetch from 'node-fetch';
 export const getActualPrice = async (req, res) => {
     const { ticker } = req.params;
