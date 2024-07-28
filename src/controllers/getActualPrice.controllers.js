@@ -12,3 +12,16 @@ export const getActualPrice = async (req, res) => {
         res.json({message: error});
     }
 };
+
+export const getActualPriceFunc = async (ticker) => {
+    try {
+        let price = 0;
+        await fetch(`https://www.binance.us/api/v3/ticker/price?symbol=${ticker.toUpperCase()}`)
+            .then(responseApi => responseApi.json())
+            .then(responseApi => price=responseApi.price)
+            .catch(err => price=err );
+        return price;
+    } catch (error) {
+        return {message: error};
+    }
+};

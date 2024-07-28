@@ -31,12 +31,6 @@ export const getOperation = async (req, res) => {
     };
 };
 
-// function stringToBoolean(str) {
-//     if (str === "true") return true;
-//     if (str === "false") return false;
-//     return Boolean(str);  // Devuelve false para cadenas vacías y true para cualquier otra cosa
-// }
-
 export const updateOperation = async (req, res) => {
     try {
         const { id } = req.params;

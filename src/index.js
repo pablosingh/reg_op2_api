@@ -3,6 +3,7 @@ import sequelize from './database/database.js';
 
 // import Holding from './models/Holding.js';
 // import Operation from './models/Operation.js';
+// import Cripto from './models/Cripto.js';
 
 async function connectionTest(){
     try {
@@ -18,4 +19,5 @@ async function connectionTest(){
 connectionTest();
 sequelize.sync({
     force: false
+    // force: true
 });
