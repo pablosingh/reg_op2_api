@@ -1,3 +1,4 @@
+import Cripto from "../models/Cripto.js";
 const apiKeyCoinM = '6b555911-d0f2-417f-9bd1-95cf5ea375aa';
 
 import fetch from 'node-fetch';
@@ -24,4 +25,18 @@ export const getActualPriceFunc = async (ticker) => {
     } catch (error) {
         return {message: error};
     }
+};
+
+export const updatePriceDB = async (req, res) =>{
+    const btcDB = await Cripto.findOne({
+        where: {
+            cripto: "BTCUSDT"
+        }
+    });
+    console.log(btcDB);
+    const dateDB = new Date(btcDB.dataValues.update);
+    const today = new Date();
+    const difdate = Math.round((today-dateDB)/86400000);
+    console.log(difdate);
+    res.json({ ok: "ok"});
 };
