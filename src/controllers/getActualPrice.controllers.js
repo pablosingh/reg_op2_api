@@ -1,7 +1,7 @@
 import Cripto from "../models/Cripto.js";
 const apiKeyCoinM = '6b555911-d0f2-417f-9bd1-95cf5ea375aa';
-
 import fetch from 'node-fetch';
+
 export const getActualPrice = async (req, res) => {
     const { ticker } = req.params;
     try {
@@ -35,37 +35,24 @@ export const difDate = async () => {
     });
     const dateDB = new Date(btcDB.dataValues.update);
     const today = new Date();
-    const difdate = Math.round((today-dateDB)/86400000);
-    console.log(difdate);
-    return difDate;
+    const dif = Math.round((today-dateDB)/86400000);
+    // console.log(dif);
+    return dif;
 };
 
-export const updateDB = () => {
+export const updateDB = async (req, res) => {
+    const nDate = await difDate();
+    if( nDate >= 1 ){
+        await fetch(``)
+            .then()
+            .then()
+            .catch(error => res.state(404).json({error: error}))
+    }
 
+    res.json({});
 };
 
-export const test = (req, res) => {
-    let toShow;
-    difDate()
-        // .then( r => {
-        //     toShow=r;
-        //     return toShow;
-        //     })
-        .then( t => {
-            console.log(t);
-            res.json({message: "ok : "+t});
-        })
-        .catch( e => res.json({error: e}));
-// ***********************************************************************
-    // const btcDB = await Cripto.findOne({
-    //     where: {
-    //         cripto: "BTCUSDT"
-    //     }
-    // });
-    // console.log(btcDB);
-    // const dateDB = new Date(btcDB.dataValues.update);
-    // const today = new Date();
-    // const difdate = Math.round((today-dateDB)/86400000);
-    // console.log(difdate);
-    // res.json({ ok: "ok"});
+export const test = async (req, res) => {
+    const nDate = await difDate();
+    res.json({differece: nDate});
 };
