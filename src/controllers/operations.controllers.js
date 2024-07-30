@@ -62,9 +62,14 @@ export const updateOperation = async (req, res) => {
 
 export const deleteOperation = async (req, res) => {
     try {
-        const { id } = req.params; 
-        res.json({ message: id });
+        const { id } = req.params;
+        await Operation.destroy({
+            where: {
+                id,
+            }
+        }); 
+        res.json({ message: "Operacion eliminada: "+id });
     } catch (error) {
-        res.status(500).json({message: error});
+        res.status(404).json({message: error});
     }
 };

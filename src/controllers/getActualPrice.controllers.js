@@ -27,16 +27,45 @@ export const getActualPriceFunc = async (ticker) => {
     }
 };
 
-export const updatePriceDB = async (req, res) =>{
+export const difDate = async () => {
     const btcDB = await Cripto.findOne({
         where: {
             cripto: "BTCUSDT"
         }
     });
-    console.log(btcDB);
     const dateDB = new Date(btcDB.dataValues.update);
     const today = new Date();
     const difdate = Math.round((today-dateDB)/86400000);
     console.log(difdate);
-    res.json({ ok: "ok"});
+    return difDate;
+};
+
+export const updateDB = () => {
+
+};
+
+export const test = (req, res) => {
+    let toShow;
+    difDate()
+        // .then( r => {
+        //     toShow=r;
+        //     return toShow;
+        //     })
+        .then( t => {
+            console.log(t);
+            res.json({message: "ok : "+t});
+        })
+        .catch( e => res.json({error: e}));
+// ***********************************************************************
+    // const btcDB = await Cripto.findOne({
+    //     where: {
+    //         cripto: "BTCUSDT"
+    //     }
+    // });
+    // console.log(btcDB);
+    // const dateDB = new Date(btcDB.dataValues.update);
+    // const today = new Date();
+    // const difdate = Math.round((today-dateDB)/86400000);
+    // console.log(difdate);
+    // res.json({ ok: "ok"});
 };
