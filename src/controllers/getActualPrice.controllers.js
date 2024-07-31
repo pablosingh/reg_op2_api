@@ -41,12 +41,30 @@ export const difDate = async () => {
 };
 
 export const updateDB = async (req, res) => {
+    const arrayCripto = [];
     const nDate = await difDate();
+    const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest`;
+    const headers = {
+        'Content-Type': 'application/json',
+        'X-CMC_PRO_API_KEY': '6b555911-d0f2-417f-9bd1-95cf5ea375aa'
+      };
     if( nDate >= 1 ){
-        await fetch(``)
-            .then()
-            .then()
-            .catch(error => res.state(404).json({error: error}))
+        await fetch(url, {
+            method: 'GET', 
+            headers: headers,
+          })
+            .then( js => js.json() )
+            .then( arrayRes => {
+                arrayRes.data.map( arr => {
+                    arrayCripto.push({
+                        cripto: arr.symbol,
+                        price: arr.USD.price
+                    });
+                })
+            })
+            .then( rr => console.log(arrayCripto))
+            .then( r => res.state(200).json(arrayCripto))
+            .catch(error => res.json({error: error}))
     }
 
     res.json({});
