@@ -10,7 +10,7 @@ const router = Router();
 router.get('/criptos', getCriptos );
 router.get('/cripto/:cripto', getCripto);
 router.post('/cripto', addCripto );
-router.get('/test', updateDB);
+// router.get('/test', updateDB);
 // router.put('/cripto/:id' );
 // router.delete('/cripto/:id' );
 
