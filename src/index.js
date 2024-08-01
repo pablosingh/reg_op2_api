@@ -1,6 +1,7 @@
 import app from './app.js';
 import sequelize from './database/database.js';
 import { initialCriptoLoadingCMC } from './controllers/initDBcmc.controllers.js';
+import { getdifDate } from './controllers/getActualPrice.controllers.js';
 
 // import Holding from './models/Holding.js';
 // import Operation from './models/Operation.js';
@@ -21,9 +22,11 @@ import { initialCriptoLoadingCMC } from './controllers/initDBcmc.controllers.js'
 
 sequelize.sync({ force: false })
     .then( () => {
-        app.listen(3001, () => {
+        app.listen(3001, async () => {
             console.log('listening at 3001');
-            // initialCriptoLoadingCMC();
+            const difference = await getdifDate();
+            if( difference>=1 ) 
+                initialCriptoLoadingCMC();
             // console.log( await initialCriptoLoadingCMC());
         });
     })
