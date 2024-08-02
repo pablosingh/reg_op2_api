@@ -5,7 +5,6 @@ export const createOperation = async (req, res) => {
     const { date, ticker, amount, price, total, buy, exchange, comment } = req.body;
     try {
         const newOperation = await Operation.create({ 
-            // date,
             date: new Date(),
             ticker: ticker.toUpperCase(), 
             amount, 

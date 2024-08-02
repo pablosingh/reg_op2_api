@@ -39,10 +39,8 @@ export const getdifDate = async () => {
         const today = new Date();
         const dif = Math.round((today-dateDB)/86400000);
         console.log(dif);
-        // res.json({ msg: dif });
         return dif;
     } catch (error) {
-        // res.json(error);.
         console.error(error);
     }
 };
