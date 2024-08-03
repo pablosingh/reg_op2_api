@@ -3,19 +3,19 @@ import Operation from "../models/Operation.js";
 export const createOperation = async (req, res) => {
     console.log(req.body);
     const { date, ticker, amount, price, total, buy, exchange, comment } = req.body;
-    const toCreate = { 
-        amount: Number.parseFloat(amount),
-        buy,
-        comment, 
-        date: new Date(),
-        exchange, 
-        price: Number.parseFloat(price), 
-        ticker: ticker.toUpperCase(), 
-        total: Number.parseFloat(total), 
-    };
+    
     try {
+        const toCreate = { 
+            amount: Number.parseFloat(amount),
+            buy: true,
+            comment, 
+            date: new Date(),
+            exchange, 
+            price: Number.parseFloat(price), 
+            ticker: ticker.toUpperCase(), 
+            total: Number.parseFloat(total), 
+        };
         const newOperation = await Operation.create(toCreate);
-        console.log("nueva op");
         res.json(newOperation);
     } catch (error) {
         res.json({message: error});
