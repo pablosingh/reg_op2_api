@@ -40,6 +40,6 @@ export const initialCriptoLoadingCMC = async () => {
     } catch (error) {
         console.error(error);
     }
-    console.log(arrayCripto);
+    // console.log(arrayCripto);
     return arrayCripto;
 };

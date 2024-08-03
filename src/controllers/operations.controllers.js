@@ -7,7 +7,7 @@ export const createOperation = async (req, res) => {
     try {
         const toCreate = { 
             amount: Number.parseFloat(amount),
-            buy: true,
+            buy,
             comment, 
             date: new Date(),
             exchange, 
