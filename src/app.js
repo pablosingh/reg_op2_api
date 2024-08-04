@@ -1,6 +1,7 @@
 import express from 'express';
 import operationsRoutes from './routes/operations.routes.js';
 import criptoRoutes from './routes/cripto.routes.js';
+import holdingsRoutes from './routes/holdings.routes.js';
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use((req, res, next) => {
 
 app.use(operationsRoutes);
 app.use(criptoRoutes);
+app.use(holdingsRoutes);
 
 export default app;
