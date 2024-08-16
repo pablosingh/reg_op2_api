@@ -24,7 +24,8 @@ export const initialCriptoLoadingCMC = async () => {
                     return arrayCripto;
                 })
                 .then( arrayToCreate => {
-                    arrayToCreate.map( async toCreate => {
+                    const slicedArray = arrayToCreate.slice(1, 10);// mas corto por deploy
+                    slicedArray.map( async toCreate => {
                         await Cripto.create({
                             cripto: toCreate.cripto.toUpperCase(),
                             price: toCreate.price,
