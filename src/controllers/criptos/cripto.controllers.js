@@ -1,5 +1,5 @@
 import Cripto from "../../models/Cripto.js";
-import { getActualPriceFunc } from '../getActualPrice.controllers.js';
+import { getActualPriceFunc } from './getActualPrice.controllers.js';
 
 export const addCripto = async (req, res) => {
     const { cripto } = req.body;

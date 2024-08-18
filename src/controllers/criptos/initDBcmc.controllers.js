@@ -1,4 +1,4 @@
-import Cripto from "../models/Cripto.js";
+import Cripto from "../../models/Cripto.js";
 
 export const initialCriptoLoadingCMC = async () => {
     console.log("Carga inicial de DB desde API CoinMarketCap");

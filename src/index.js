@@ -5,8 +5,7 @@ import sequelize from './database/database.js';
 import { config } from 'dotenv';
 config();
 // =======================================================================
-import { initialCriptoLoadingCMC, programarEjecucionDiaria } from './controllers/initDBcmc.controllers.js';
-// import { getdifDate } from './controllers/getActualPrice.controllers.js';
+import { initialCriptoLoadingCMC, programarEjecucionDiaria } from './controllers/criptos/initDBcmc.controllers.js';
 const port = process.env.PORT || 3001;
 
 import Holding from './models/Holding.js';
@@ -23,9 +22,7 @@ Operation.belongsTo(Holding, { foreignKey: 'HoldingId' });
 sequelize.sync({ force: true })
     .then( () => {
         app.listen(port, async () => {
-            console.log('Server on port ', port);
-            // const difference = await getdifDate();
-            // if( difference>=1 ) 
+            console.log('Server on port ', port); 
             initialCriptoLoadingCMC();
             programarEjecucionDiaria();
         });
