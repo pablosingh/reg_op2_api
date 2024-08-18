@@ -9,6 +9,7 @@ const Cripto = sequelize.define('Cripto', {
         },
         cripto:{
             type: DataTypes.STRING,
+            unique: true,
         },
         price:{
             type: DataTypes.FLOAT

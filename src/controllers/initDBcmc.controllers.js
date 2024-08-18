@@ -24,13 +24,24 @@ export const initialCriptoLoadingCMC = async () => {
                     return arrayCripto;
                 })
                 .then( arrayToCreate => {
-                    const slicedArray = arrayToCreate.slice(1, 10);// mas corto por deploy
+                    const slicedArray = arrayToCreate.slice(1, 30);// mas corto por deploy
                     slicedArray.map( async toCreate => {
-                        await Cripto.create({
-                            cripto: toCreate.cripto.toUpperCase(),
-                            price: toCreate.price,
-                            update: new Date(),
-                        });
+                        const foundElement = await Cripto.findOne({
+                            where: {
+                                cripto: toCreate.cripto.toUpperCase(),
+                            }
+                        })
+                        if(foundElement){
+                            foundElement.price = toCreate.price;
+                            foundElement.update = new Date();
+                            await foundElement.save();
+                        }else{
+                            await Cripto.create({
+                                cripto: toCreate.cripto.toUpperCase(),
+                                price: toCreate.price,
+                                update: new Date(),
+                            });
+                        }
                     });
                 })
                 .catch(e => console.error(e) );
