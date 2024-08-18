@@ -37,7 +37,7 @@ export const createOperation = async (req, res) => {
                 exchange,
                 HoldingId: foundHolding.id
             });
-            if(buy){
+            if(buy==true){
                 foundHolding.amount += toCreate.amount;
                 foundHolding.total += toCreate.total;
                 foundHolding.price = foundHolding.total / foundHolding.amount;
