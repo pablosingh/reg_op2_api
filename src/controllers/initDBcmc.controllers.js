@@ -24,8 +24,8 @@ export const initialCriptoLoadingCMC = async () => {
                     return arrayCripto;
                 })
                 .then( arrayToCreate => {
-                    const slicedArray = arrayToCreate.slice(1, 30);// mas corto por deploy
-                    slicedArray.map( async toCreate => {
+                    // const slicedArray = arrayToCreate.slice(1, 30);// mas corto por deploy
+                    arrayToCreate.map( async toCreate => {
                         const foundElement = await Cripto.findOne({
                             where: {
                                 cripto: toCreate.cripto.toUpperCase(),
@@ -50,3 +50,22 @@ export const initialCriptoLoadingCMC = async () => {
     }
     return arrayCripto;
 };
+
+// ====================================
+
+export const ejecutarFuncionDiaria = () => {
+    initialCriptoLoadingCMC();
+    programarEjecucionDiaria();
+}
+  
+export const programarEjecucionDiaria = () => {
+    const ahora = new Date();
+    const proximaEjecucion = new Date();
+  
+    // Establecer la próxima ejecución a las 12:00 AM del siguiente día
+    proximaEjecucion.setHours(24, 0, 0, 0);
+    const tiempoRestante = proximaEjecucion - ahora;  
+    setTimeout(ejecutarFuncionDiaria, tiempoRestante);
+}
+  // Iniciar la primera ejecución
+// programarEjecucionDiaria();

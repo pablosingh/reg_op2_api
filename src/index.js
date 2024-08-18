@@ -1,6 +1,6 @@
 import app from './app.js';
 import sequelize from './database/database.js';
-import { initialCriptoLoadingCMC } from './controllers/initDBcmc.controllers.js';
+import { initialCriptoLoadingCMC, programarEjecucionDiaria } from './controllers/initDBcmc.controllers.js';
 import { getdifDate } from './controllers/getActualPrice.controllers.js';
 import { config } from 'dotenv';
 const port = process.env.PORT || 3002;
@@ -22,8 +22,8 @@ sequelize.sync({ force: true })
             console.log('Server on port ', port);
             // const difference = await getdifDate();
             // if( difference>=1 ) 
-                initialCriptoLoadingCMC();
-            
+            initialCriptoLoadingCMC();
+            programarEjecucionDiaria();
         });
     })
     .catch( e => console.error(e) );
