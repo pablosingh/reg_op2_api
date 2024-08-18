@@ -90,7 +90,7 @@ export const getActualPriceDB = async (req, res) => {
             where: {
                 cripto: cripto.toUpperCase(),
             },
-            order: [['update', 'DESC']]
+            order: [['updatePrice', 'DESC']]
         });
         res.json(foundCripto);
     } catch (error) {
