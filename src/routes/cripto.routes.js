@@ -3,7 +3,8 @@ import {
     addCripto,
     getCriptos,
  } from '../controllers/criptos/cripto.controllers.js';
-import { getActualPriceDB, test, getdifDate } from "../controllers/getActualPrice.controllers.js";
+import { getActualPriceDB } from "../controllers/getActualPrice.controllers.js";
+// import { test, getdifDate } from "../controllers/getActualPrice.controllers.js";
 const router = Router();
 
 // router.get('/cripto/:cripto', getCripto); // Por cripto sin ordenar

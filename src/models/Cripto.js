@@ -14,7 +14,7 @@ const Cripto = sequelize.define('Cripto', {
         price:{
             type: DataTypes.FLOAT
         },
-        update:{
+        updatePrice:{
             type: DataTypes.DATE
         }
     },

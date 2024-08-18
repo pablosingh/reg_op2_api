@@ -33,13 +33,13 @@ export const initialCriptoLoadingCMC = async () => {
                         })
                         if(foundElement){
                             foundElement.price = toCreate.price;
-                            foundElement.update = new Date();
+                            foundElement.updatePrice = new Date();
                             await foundElement.save();
                         }else{
                             await Cripto.create({
                                 cripto: toCreate.cripto.toUpperCase(),
                                 price: toCreate.price,
-                                update: new Date(),
+                                updatePrice: new Date(),
                             });
                         }
                     });

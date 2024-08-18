@@ -7,7 +7,7 @@ export const addCripto = async (req, res) => {
         const newCripto =  await Cripto.create({
             cripto: cripto.toUpperCase(),
             price: await getActualPriceFunc(cripto),
-            update: new Date(),
+            updatePrice: new Date(),
         });
         res.json(newCripto);
     } catch (error) {

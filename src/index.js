@@ -1,9 +1,13 @@
 import app from './app.js';
+// =======================================================================
 import sequelize from './database/database.js';
-import { initialCriptoLoadingCMC, programarEjecucionDiaria } from './controllers/initDBcmc.controllers.js';
-import { getdifDate } from './controllers/getActualPrice.controllers.js';
+// import { sequelize_local as sequelize } from './database/database.js';
 import { config } from 'dotenv';
-const port = process.env.PORT || 3002;
+config();
+// =======================================================================
+import { initialCriptoLoadingCMC, programarEjecucionDiaria } from './controllers/initDBcmc.controllers.js';
+// import { getdifDate } from './controllers/getActualPrice.controllers.js';
+const port = process.env.PORT || 3001;
 
 import Holding from './models/Holding.js';
 import Operation from './models/Operation.js';
@@ -30,10 +34,4 @@ sequelize.sync({ force: true })
 
 // CREATE TABLE "Criptos2" AS SELECT * FROM "Criptos";
 // ==================================================================
-// app.get('/', (req, res) => {
-//     res.send('¡Hola, mundo!');
-// });
-  
-// app.listen(port, () => {
-//     console.log(`Servidor escuchando en http://localhost:${port}`);
-// });
+

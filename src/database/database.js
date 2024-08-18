@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import { config } from 'dotenv';
+config();
 const DATABASE_URL = process.env.DATABASE_URL;
 
 const sequelize = new Sequelize(DATABASE_URL,{
@@ -12,5 +13,10 @@ const sequelize = new Sequelize(DATABASE_URL,{
         }
     }
 });
+
+// export const sequelize = new Sequelize('portafoliotest','postgres','postgres',{
+//     host: 'localhost',
+//     dialect: 'postgres',
+// });
 
 export default sequelize;
