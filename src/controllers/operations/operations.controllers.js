@@ -81,25 +81,21 @@ export const getOperations = async (req, res) => {
 };
 
 export const updateOperation = async (req, res) => {
+    const { id, date, amount , price , total , buy , exchange , comment } = req.body;
     try {
-        const { id } = req.params;
-        const { 
-            ticker, price, amount,
-            total, buy, comment,
-            exchange
-         } = req.body;
         const foundOperation = await Operation.findOne({
             where: {
                 id: id
             }
         });
-        ticker ? foundOperation.ticker = ticker : null;
-        price ? foundOperation.price = Number(price) : null;
-        amount ? foundOperation.amount = Number(amount) : null;
-        total ? foundOperation.total = Number(total) : null;
-        buy ? foundOperation.buy = buy : null;
-        comment ? foundOperation.comment = comment : null;
-        exchange ? foundOperation.exchange = exchange : null;
+        foundOperation.date = date;
+        foundOperation.amount = Number(amount);
+        foundOperation.price = Number(price);
+        foundOperation.total = Number(total);
+        foundOperation.buy = buy;
+        foundOperation.exchange = exchange;
+        foundOperation.comment = comment;
+        console.log(foundOperation);
         await foundOperation.save();
         res.json(foundOperation);
     } catch (error) {

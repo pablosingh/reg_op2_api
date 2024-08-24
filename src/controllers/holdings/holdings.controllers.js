@@ -31,12 +31,6 @@ export const getHoldings = async (req, res) => {
 
 export const createHolding = async (req, res) => {
     const { date, ticker, amount, price, total, comment, UserId } = req.body;
-    // const dateTicker = new Date();
-    // const formattedDate = dateTicker.toLocaleDateString('es-ES', {
-    //     day: '2-digit',
-    //     month: '2-digit',
-    //     year: 'numeric',
-    // });
     const toCreate = { 
         date: date,
         ticker: ticker?.toUpperCase(), 
@@ -52,4 +46,39 @@ export const createHolding = async (req, res) => {
     } catch (error) {
         res.json({msg: error});
     };
+};
+
+export const updateHolding = async (req, res) => {
+    const { ticker, HoldingId, id, comment } = req.body;
+    try {
+        const foundHolding = await Holding.findOne({
+            where: {
+                id
+            },
+            include: [ Operation ]
+        });
+        if(foundHolding){
+            const objToUpdate = foundHolding.Operations?.reduce((acumulador, op) => {
+                if(op.buy == true){
+                    acumulador.amount += op.amount;
+                    acumulador.total += op.total;
+                }else{
+                    acumulador.amount -= op.amount;
+                    acumulador.total -= op.total;
+                }
+                return acumulador;
+            }, {});
+            objToUpdate.price = objToUpdate.total / objToUpdate.amount;
+            foundHolding.comment = comment;
+            foundHolding.amount = objToUpdate.amount;
+            foundHolding.total = objToUpdate.total;
+            foundHolding.price = objToUpdate.price;
+            await foundHolding.save();
+            res.json(foundHolding);
+        }else{
+            res.json({msg: "Holding not found"});
+        }
+    } catch (error) {
+        res.json({msg: error});
+    }
 };
