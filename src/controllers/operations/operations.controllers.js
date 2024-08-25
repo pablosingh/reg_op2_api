@@ -1,6 +1,7 @@
 import Operation from "../../models/Operation.js";
 // import User from "../../models/User.js";
 import Holding from "../../models/Holding.js";
+import { updateHolding } from "../holdings/holdings.controllers.js";
 
 export const createOperation = async (req, res) => {
     const { date, ticker, amount, price, total, buy, exchange, comment, UserId } = req.body;
@@ -81,7 +82,9 @@ export const getOperations = async (req, res) => {
 };
 
 export const updateOperation = async (req, res) => {
-    const { id, date, amount , price , total , buy , exchange , comment } = req.body;
+    // console.log("update Operation");
+    // console.log(req.body);
+    const { id, date, amount, price, total, buy, exchange, comment, commentHold } = req.body;
     try {
         const foundOperation = await Operation.findOne({
             where: {
@@ -95,12 +98,12 @@ export const updateOperation = async (req, res) => {
         foundOperation.buy = buy;
         foundOperation.exchange = exchange;
         foundOperation.comment = comment;
-        console.log(foundOperation);
         await foundOperation.save();
+        await updateHolding(foundOperation.HoldingId, commentHold);
         res.json(foundOperation);
     } catch (error) {
         res.status(500).json({message: error});
-    }
+    };
 };
 
 export const deleteOperation = async (req, res) => {

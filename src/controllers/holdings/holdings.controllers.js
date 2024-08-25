@@ -48,8 +48,7 @@ export const createHolding = async (req, res) => {
     };
 };
 
-export const updateHolding = async (req, res) => {
-    const { ticker, HoldingId, id, comment } = req.body;
+export const updateHolding = async (id, comment) => {
     try {
         const foundHolding = await Holding.findOne({
             where: {
@@ -58,6 +57,7 @@ export const updateHolding = async (req, res) => {
             include: [ Operation ]
         });
         if(foundHolding){
+            console.log(foundHolding);
             const objToUpdate = foundHolding.Operations?.reduce((acumulador, op) => {
                 if(op.buy == true){
                     acumulador.amount += op.amount;
@@ -67,18 +67,18 @@ export const updateHolding = async (req, res) => {
                     acumulador.total -= op.total;
                 }
                 return acumulador;
-            }, {});
+            }, { amount: 0, total: 0 });
             objToUpdate.price = objToUpdate.total / objToUpdate.amount;
-            foundHolding.comment = comment;
+            comment ? foundHolding.comment = comment : null ;
             foundHolding.amount = objToUpdate.amount;
             foundHolding.total = objToUpdate.total;
             foundHolding.price = objToUpdate.price;
             await foundHolding.save();
-            res.json(foundHolding);
+            return foundHolding;
         }else{
-            res.json({msg: "Holding not found"});
+            return {msg: "Holding not found"};
         }
     } catch (error) {
-        res.json({msg: error});
-    }
+        return {msg: error};
+    };
 };
