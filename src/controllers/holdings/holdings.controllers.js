@@ -48,7 +48,7 @@ export const createHolding = async (req, res) => {
     };
 };
 
-export const updateHolding = async (id, comment) => {
+export const updateHolding = async (id) => {
     try {
         const foundHolding = await Holding.findOne({
             where: {
@@ -69,7 +69,6 @@ export const updateHolding = async (id, comment) => {
                 return acumulador;
             }, { amount: 0, total: 0 });
             objToUpdate.price = objToUpdate.total / objToUpdate.amount;
-            comment ? foundHolding.comment = comment : null ;
             foundHolding.amount = objToUpdate.amount;
             foundHolding.total = objToUpdate.total;
             foundHolding.price = objToUpdate.price;
@@ -81,4 +80,25 @@ export const updateHolding = async (id, comment) => {
     } catch (error) {
         return {msg: error};
     };
+};
+
+export const updateCommentHolding = async (req, res) => {
+    const { id, comment } = req.body;
+    try {
+        const foundHolding = await Holding.findOne({
+            where: {
+                id
+            },
+            // include: [ Operation ]
+        });
+        if(foundHolding){
+            foundHolding.comment = comment;
+            await foundHolding.save();
+            res.json(foundHolding);
+        }
+        else
+            res.json({ msg: "error - Holding not found" });
+    } catch (error) {
+        res.json({ msg: error});
+    }
 };

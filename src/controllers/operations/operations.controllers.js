@@ -84,7 +84,7 @@ export const getOperations = async (req, res) => {
 export const updateOperation = async (req, res) => {
     // console.log("update Operation");
     // console.log(req.body);
-    const { id, date, amount, price, total, buy, exchange, comment, commentHold } = req.body;
+    const { id, date, amount, price, total, buy, exchange, comment } = req.body;
     try {
         const foundOperation = await Operation.findOne({
             where: {
@@ -99,7 +99,7 @@ export const updateOperation = async (req, res) => {
         foundOperation.exchange = exchange;
         foundOperation.comment = comment;
         await foundOperation.save();
-        await updateHolding(foundOperation.HoldingId, commentHold);
+        await updateHolding(foundOperation.HoldingId);
         res.json(foundOperation);
     } catch (error) {
         res.status(500).json({message: error});
