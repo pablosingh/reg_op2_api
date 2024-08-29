@@ -19,12 +19,12 @@ Holding.belongsTo(User, { foreignKey: 'UserId'});
 Holding.hasMany(Operation, { foreinkey: "HoldingId" });
 Operation.belongsTo(Holding, { foreignKey: 'HoldingId' });
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
 .then( () => {
     app.listen(port, async () => {
             console.log('Server on port ', port); 
-            // initialCriptoLoadingCMC();
-            // programarEjecucionDiaria();
+            initialCriptoLoadingCMC();
+            programarEjecucionDiaria();
         });
     })
     .catch( e => console.error(e) );
