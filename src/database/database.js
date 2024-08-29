@@ -24,6 +24,7 @@ const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-e
 const sequelize = new Sequelize(miURL,{
     dialect: 'postgres',
     logging: false,
+    dialectModule: require('pg')
     // dialectOptions: {
     //     ssl: {
     //     require: true, // Requiere SSL
