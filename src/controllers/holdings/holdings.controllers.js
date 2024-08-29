@@ -100,5 +100,5 @@ export const updateCommentHolding = async (req, res) => {
             res.json({ msg: "error - Holding not found" });
     } catch (error) {
         res.json({ msg: error});
-    }
+    };
 };
