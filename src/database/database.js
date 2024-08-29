@@ -20,7 +20,7 @@ const POSTGRES_URL = process.env.POSTGRES_URL;
 //     dialect: 'postgres',
 // });
 // ============================================================================
-const sequelize = new Sequelize(POSTGRES_URL,{
+const sequelize = new Sequelize(process.env.POSTGRES_URL,{
     dialect: 'postgres',
     logging: false,
     dialectOptions: {
