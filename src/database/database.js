@@ -23,11 +23,11 @@ const POSTGRES_URL = process.env.POSTGRES_URL;
 const sequelize = new Sequelize(POSTGRES_URL,{
     dialect: 'postgres',
     logging: false,
-    // dialectOptions: {
-    //     ssl: {
-    //     require: true, // Requiere SSL
-    //     rejectUnauthorized: false // Establecer en true si el certificado es válido
-    //     }
-    // }
+    dialectOptions: {
+        ssl: {
+        require: true, // Requiere SSL
+        rejectUnauthorized: false // Establecer en true si el certificado es válido
+        }
+    }
 });
 export default sequelize;
