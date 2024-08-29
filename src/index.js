@@ -32,7 +32,8 @@
 // CREATE TABLE "Criptos2" AS SELECT * FROM "Criptos";
 // ==================================================================
 
-const express = require('express');
+// const express = require('express');
+import express from 'express';
 const app2 = express();
 const PORT = process.env.PORT || 3000;
 app2.get('/', (req, res) => {
