@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 config();
 const DATABASE_URL = process.env.DATABASE_URL;
 const POSTGRES_URL = process.env.POSTGRES_URL;
+const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 
 // const sequelize = new Sequelize(DATABASE_URL,{
 //     dialect: 'postgres',
@@ -20,7 +21,7 @@ const POSTGRES_URL = process.env.POSTGRES_URL;
 //     dialect: 'postgres',
 // });
 // ============================================================================
-const sequelize = new Sequelize(process.env.POSTGRES_URL,{
+const sequelize = new Sequelize(miURL,{
     dialect: 'postgres',
     logging: false,
     dialectOptions: {
