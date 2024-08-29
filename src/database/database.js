@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { config } from 'dotenv';
 config();
 const DATABASE_URL = process.env.DATABASE_URL;
+const POSTGRES_URL = process.env.POSTGRES_URL;
 
 // const sequelize = new Sequelize(DATABASE_URL,{
 //     dialect: 'postgres',
@@ -19,7 +20,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 //     dialect: 'postgres',
 // });
 // ============================================================================
-const sequelize = new Sequelize(DATABASE_URL,{
+const sequelize = new Sequelize(POSTGRES_URL,{
     dialect: 'postgres',
     logging: false,
     // dialectOptions: {
