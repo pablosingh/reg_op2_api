@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import { config } from 'dotenv';
+import pg from 'pg';
 config();
 const DATABASE_URL = process.env.DATABASE_URL;
 const POSTGRES_URL = process.env.POSTGRES_URL;
@@ -24,7 +25,7 @@ const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-e
 const sequelize = new Sequelize(miURL,{
     dialect: 'postgres',
     logging: false,
-    dialectModule: require('pg')
+    dialectModule: pg
     // dialectOptions: {
     //     ssl: {
     //     require: true, // Requiere SSL
