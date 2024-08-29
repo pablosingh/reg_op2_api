@@ -24,11 +24,11 @@ const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-e
 const sequelize = new Sequelize(miURL,{
     dialect: 'postgres',
     logging: false,
-    dialectOptions: {
-        ssl: {
-        require: true, // Requiere SSL
-        rejectUnauthorized: false // Establecer en true si el certificado es válido
-        }
-    }
+    // dialectOptions: {
+    //     ssl: {
+    //     require: true, // Requiere SSL
+    //     rejectUnauthorized: false // Establecer en true si el certificado es válido
+    //     }
+    // }
 });
 export default sequelize;
