@@ -19,16 +19,25 @@ Holding.belongsTo(User, { foreignKey: 'UserId'});
 Holding.hasMany(Operation, { foreinkey: "HoldingId" });
 Operation.belongsTo(Holding, { foreignKey: 'HoldingId' });
 
-sequelize.sync({ force: true })
-.then( () => {
-    app.listen(port, async () => {
-            console.log('Server on port ', port); 
-            initialCriptoLoadingCMC();
-            programarEjecucionDiaria();
-        });
-    })
-    .catch( e => console.error(e) );
+// sequelize.sync({ force: false })
+// .then( () => {
+//     app.listen(port, async () => {
+//             console.log('Server on port ', port); 
+//             initialCriptoLoadingCMC();
+//             programarEjecucionDiaria();
+//         });
+//     })
+//     .catch( e => console.error(e) );
 
 // CREATE TABLE "Criptos2" AS SELECT * FROM "Criptos";
 // ==================================================================
 
+const express = require('express');
+const app2 = express();
+const PORT = process.env.PORT || 3000;
+app2.get('/', (req, res) => {
+  res.send('¡Hola Mundo!');
+});
+app2.listen(PORT, () => {
+  console.log(`Servidor está corriendo en http://localhost:${PORT}`);
+});
