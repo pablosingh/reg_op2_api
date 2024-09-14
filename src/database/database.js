@@ -4,7 +4,7 @@ import pg from 'pg';
 config();
 const DATABASE_URL = process.env.DATABASE_URL;
 const POSTGRES_URL = process.env.POSTGRES_URL;
-const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+
 
 // const sequelize = new Sequelize(DATABASE_URL,{
 //     dialect: 'postgres',
@@ -22,10 +22,10 @@ const miURL = "postgres://default:u6gCaHS7WhQo@ep-calm-leaf-a4fesg0n-pooler.us-e
 //     dialect: 'postgres',
 // });
 // ============================================================================
-const sequelize = new Sequelize(miURL,{
+const sequelize = new Sequelize(DATABASE_URL,{
     dialect: 'postgres',
     logging: false,
-    dialectModule: pg
+    dialectModule: pg,
     // dialectOptions: {
     //     ssl: {
     //     require: true, // Requiere SSL
